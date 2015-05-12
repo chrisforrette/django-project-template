@@ -112,3 +112,9 @@ STATICFILES_FINDERS = (
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Compressor
+
+COMPRESS_ENABLED = False
+COMPRESS_OUTPUT_DIR = 'build' # Goes to {{ project_name }}/static/collect/build/
+COMPRESS_OFFLINE = True # Run: ./manage.py compress to generate JS/CSS and manifest.json
