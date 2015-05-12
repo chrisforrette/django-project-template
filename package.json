@@ -17,7 +17,7 @@
     "watch:css": "nodemon -e scss,json --exec \"npm run build:css\"",
     "build:css": "node-sass ./{{ project_name }}/static/scss/{{ project_name }}.scss --precision 7 --stdout | autoprefixer -o ./{{ project_name }}/static/build/css/{{ project_name }}.css",
 
-    "browsersync": "browser-sync start --proxy 'localhost:8000' --files './{{ project_name }}/static/build/css/*.css'",
+    "browsersync": "browser-sync start --proxy 'localhost:8000' --files './{{ project_name }}/static/build/css/*.css'"
   },
   "repository": {
     "type": "git",
