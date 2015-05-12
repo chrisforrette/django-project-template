@@ -1,0 +1,34 @@
+{
+  "name": "{{ project_name }}",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm run build:test",
+    "test": "npm run phantom",
+    "watch:test": "watchify -t reactify {{ project_name }}/static/js/test/main.js -o {{ project_name }}/static/build/js/test.js -v",
+    "build:test": "browserify -t reactify {{ project_name }}/static/js/test/main.js -d -o {{ project_name }}/static/build/js/test.js",
+    "phantom": "mochify ./{{ project_name }}/static/js/**/*_test.js ./{{ project_name }}/static/js/**/**/*_test.js --require ./{{ project_name }}/static/js/test/bootstrap.js --transform reactify",
+
+    "watch:js": "watchify -t reactify {{ project_name }}/static/js/main.js -o {{ project_name }}/static/build/js/main.js -dv",
+    "build:js": "browserify -t reactify {{ project_name }}/static/js/main.js | uglifyjs -mc > {{ project_name }}/static/build/js/main.js",
+    "build:js:production": "NODE_PATH=./ browserify -t reactify {{ project_name }}/static/js/main.js | uglifyjs -cm > {{ project_name }}/static/build/js/main.js",
+    
+    "watch:css": "nodemon -e scss,json --exec \"npm run build:css\"",
+    "build:css": "node-sass ./{{ project_name }}/static/scss/{{ project_name }}.scss --precision 7 --stdout | autoprefixer -o ./{{ project_name }}/static/build/css/{{ project_name }}.css",
+
+    "browsersync": "browser-sync start --proxy 'localhost:8000' --files './{{ project_name }}/static/build/css/*.css'",
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+  }
+}
